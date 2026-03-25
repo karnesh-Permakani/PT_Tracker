@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chennai Smart Bus Tracker</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <script>
+    tailwind.config = { darkMode: "class" };
+  </script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white transition-all duration-500">
+  <div id="appScreen" class="h-screen flex flex-col">
+    <div class="bg-white dark:bg-gray-800 shadow-md px-4 py-3 flex justify-between items-center">
+      <div>
+        <h1 class="text-xl font-bold">🚌 Chennai Smart Bus Tracker</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-300">Realtime Firebase Dashboard</p>
+      </div>
+      <button id="themeToggle" class="px-4 py-2 rounded-xl bg-gray-200 dark:bg-gray-700">🌙 Dark</button>
+    </div>
+
+    <div class="flex flex-1 overflow-hidden">
+      <div class="w-full md:w-[390px] bg-white dark:bg-gray-800 border-r dark:border-gray-700 p-4 overflow-y-auto left-panel-scroll">
+        <div class="glass rounded-2xl shadow-sm p-4 mb-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-lg">Live Bus Status</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">Realtime Firebase updates</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="status-spinner"></span>
+              <span class="text-sm font-medium">Running</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <input id="searchInput" type="text" placeholder="Search bus / route"
+            class="w-full p-3 rounded-xl border dark:bg-gray-700 dark:border-gray-600 outline-none" />
+
+          <select id="availabilityFilter"
+            class="w-full p-3 rounded-xl border dark:bg-gray-700 dark:border-gray-600">
+            <option value="All">All Availability</option>
+            <option value="Available">Available</option>
+            <option value="Few Seats">Few Seats</option>
+            <option value="Full">Full</option>
+          </select>
+        </div>
+
+        <div class="mt-5 flex items-center justify-between">
+          <h2 class="text-lg font-bold">Nearby Buses</h2>
+          <span id="busCount" class="text-sm text-gray-500 dark:text-gray-300"></span>
+        </div>
+
+        <div id="busList" class="space-y-3 mt-4"></div>
+      </div>
+
+      <div class="flex-1 min-h-0 p-4 bg-gray-100 dark:bg-gray-900">
+        <div class="map-box relative">
+          <h2>Live Bus Map</h2>
+          <div id="map"></div>
+
+          <div class="absolute bottom-6 left-6 right-6 md:right-auto md:w-[380px] glass rounded-2xl shadow-xl p-4 z-[500]">
+            <h3 class="font-bold text-lg mb-2">Selected Bus</h3>
+            <div id="busInfo" class="text-sm text-gray-700 dark:text-gray-200">
+              Click a bus card to see ETA, delay, seats, and route details.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="fixed top-4 right-4 z-[9999] space-y-2"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
