@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PT Tracker</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>PT Tracker</h1>
+    <p class="subtitle">Live Public Transport Updates</p>
+
+    <div class="stats-box">
+      <div class="stat-card">
+        <h3>Total Buses in Database</h3>
+        <p id="busCount">0</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>Total Live Bus Entries</h3>
+        <p id="liveEntryCount">0</p>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <div class="table-box">
+        <h2>Total Records</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Bus ID</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
+              <th>Timestamp</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="busTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="map-box">
+        <h2>Live Bus Map</h2>
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
